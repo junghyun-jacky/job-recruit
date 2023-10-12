@@ -36,4 +36,25 @@ public class Recruit {
     @JoinColumn(name = "company_id")
     private Company company;
 
+
+    /** 연관관계 메서드 **/
+    public void setCompany(Company company) {
+        this.company = company;
+        company.getRecruits().add(this);
+    }
+
+    /** 생성 메서드 **/
+    public static Recruit createRecruit(Company company, String country, String region, String position, String reward, String tech, String content) {
+        Recruit recruit = new Recruit();
+        recruit.setCompany(company);
+
+        recruit.setCountry(country);
+        recruit.setRegion(region);
+        recruit.setPosition(position);
+        recruit.setReward(reward);
+        recruit.setTech(tech);
+        recruit.setContent(content);
+
+        return recruit;
+    }
 }
